@@ -431,22 +431,24 @@ var resizePizzas = function(size) {
   var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
   
   function changePizzaSizes(size) {
-    if (size === 1) {
+    if (size == 1) {
       console.log("size 1 is small");
       for (var i = 0; i < randomPizzas.length; i++) {
         randomPizzas[i].style.width = '25%';
       };
-    } else if (size === 2) {
+    } else if (size == 2) {
       console.log("size is 2 is medium");
-      for (var i = 0; i <randomPizzas.length; i++) {
+      for (var i = 0; i < randomPizzas.length; i++) {
         randomPizzas[i].style.width = '33%';
       };
-    } else if (size === 3) {
+    } else if (size == 3) {
       console.log("size is 3 is large");
-      for (var i = 0; i <randomPizzas.length; i++) {
+      for (var i = 0; i < randomPizzas.length; i++) {
         randomPizzas[i].style.width = '50%';
       };
-    } else (console.log("bug in changePizzaSizes"));
+    } else {
+      console.log("bug in changePizzaSizes");
+    }
   }
 
   changePizzaSizes(size);
