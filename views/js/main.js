@@ -421,45 +421,32 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  function determineDx (elem, size) {
-    var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
-    var oldSize = oldWidth / windowWidth;
-
-    // Changes the slider value to a percent width
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return 0.25;
-        case "2":
-          return 0.3333;
-        case "3":
-          return 0.5;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
-    }
-
-    var newSize = sizeSwitcher(size);
-    var dx = (newSize - oldSize) * windowWidth;
-
-    return dx;
-  }
-
-  // Declare all necessary variables outside of function changePizzaSizes;
-  // Query the DOM using document.getElementsbyClassName("randomPizzaContainer") and save in a variable which can be used inside the for loop.
-  // This avoids querying the DOM everytime the loop runs.
-
+  // Iterates through pizza elements on the page and changes their widths
+  // Using if/else statements instead of switch statements as personal preference
+  // Removed determineDX function since calculations were too time-consuming
+  // Instead we included only 3 possible pizza sizes foregoing the need for any dynamic calculations
+  // When user moves the slider to change the pizza size, function will loop through all
+  // pizzas in randomPizzaContainer and set their width by percentage stated.
+  
   var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
-  var dx = determineDx(randomPizzas[i], size);
-  var newwidth = (randomPizzas[i].offsetWidth + dx) + 'px';
-
-  // Iterates through pizza elements on the page and changes their widths  
+  
   function changePizzaSizes(size) {
-    for (var i = 0; i < randomPizzas.length; i++) {
-      randomPizzas[i].style.width = newwidth;
-    }
+    if (size === 1) {
+      console.log("size 1 is small");
+      for (var i = 0; i < randomPizzas.length; i++) {
+        randomPizzas[i].style.width = '25%';
+      };
+    } else if (size === 2) {
+      console.log("size is 2 is medium");
+      for (var i = 0; i <randomPizzas.length; i++) {
+        randomPizzas[i].style.width = '33%';
+      };
+    } else if (size === 3) {
+      console.log("size is 3 is large");
+      for (var i = 0; i <randomPizzas.length; i++) {
+        randomPizzas[i].style.width = '50%';
+      };
+    } else (console.log("bug in changePizzaSizes"));
   }
 
   changePizzaSizes(size);
