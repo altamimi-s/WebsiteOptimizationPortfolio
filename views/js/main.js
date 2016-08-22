@@ -475,8 +475,9 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas");
+
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -508,15 +509,18 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.getElementsByClassName('mover');
+  var items = document.getElementsByClassName('mover');  
+  // To avoid sending a query to the DOM in each iteration, move DOM request outside of loop
+  var top = document.body.scrollTop / 1250;
   // Calling the pizzaScroll function on requestAnimFrame method. This tells the browser
   // that the animation function will be called before the performing the next repaint.
   var pizzaScroll = function() {
     for (var i = 0; i < items.length; i++) {
-      var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+      // var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+      var phase = Math.sin((top) + (i % 5));
       items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
     }
-  }
+  };
   requestAnimFrame(pizzaScroll);
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -536,8 +540,12 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  // Dynamically calculate the number of pizzas needed to fill screen (instead of specifying actual number)
+  var rows = window.screen.height / s;
+  var reqPizzas = rows * cols;
+  var elem;
+  for (var i = 0; i < reqPizzas; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
