@@ -1,3 +1,30 @@
+# Website Performance Optimization portfolio project
+
+**Part 1: Optimize PageSpeed Insights Score for index.html** 
+
+[Google Pagespeed Insights](https://developers.google.com/speed/pagespeed/insights/) will be used to evaluate the Pagespeed score of index.html.
+
+The goal for Part 1 is to have a score of 90 or higher for both Mobile and Desktop. To achieve this, the following optimizations were implemented:
+* Resize pizza image
+* Remove render-blocking JS: add async attribute to google analytics
+* Optimize CSS delivery: use media query print type;
+* Move `<script>` tags to end of html (before closing `<body>` tag);
+* Inline CSS
+
+**Part 2: Optimize For a Smooth Transition When Pizza Sizes Change pizza.html**
+
+To create a smooth transition when user uses the slider to change the pizza sizes, the following optimizations were implemented:
+
+* replace all querySelector methods with getElementById
+* replace all querySelectorAll methods with getElementsByClassName
+* remove determineDX function
+* changePizzaSizes function changed to if statements; determined 3 possible pizza widths(%) and used these in the for loop when it iterates thru all the pizzas.
+
+**Part 3: Optimize Frames per Second in pizza.html**
+
+I used requestAnimationFrame method for smooth scrolling. 
+
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
