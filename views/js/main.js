@@ -332,6 +332,18 @@ var ingredientItemizer = function(string) {
   return "<li>" + string + "</li>";
 };
 
+// source for requestAnimationFrame: http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       || 
+        window.webkitRequestAnimationFrame || 
+        window.mozRequestAnimationFrame    || 
+        window.oRequestAnimationFrame      || 
+        window.msRequestAnimationFrame     || 
+        function(/* function */ callback, /* DOMElement */ element){
+            return window.setTimeout(callback, 1000 / 60);
+        };
+})();
+
 // Returns a string with random pizza ingredients nested inside <li> tags
 var makeRandomPizza = function() {
   var pizza = "";
@@ -435,17 +447,17 @@ var resizePizzas = function(size) {
       console.log("size 1 is small");
       for (var i = 0; i < randomPizzas.length; i++) {
         randomPizzas[i].style.width = '25%';
-      };
+      }
     } else if (size == 2) {
       console.log("size is 2 is medium");
       for (var i = 0; i < randomPizzas.length; i++) {
         randomPizzas[i].style.width = '33%';
-      };
+      }
     } else if (size == 3) {
       console.log("size is 3 is large");
       for (var i = 0; i < randomPizzas.length; i++) {
         randomPizzas[i].style.width = '50%';
-      };
+      }
     } else {
       console.log("bug in changePizzaSizes");
     }
@@ -497,10 +509,15 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName('mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  // Calling the pizzaScroll function on requestAnimFrame method. This tells the browser
+  // that the animation function will be called before the performing the next repaint.
+  var pizzaScroll = function() {
+    for (var i = 0; i < items.length; i++) {
+      var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+      items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    }
   }
+  requestAnimFrame(pizzaScroll);
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -519,7 +536,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 20; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
