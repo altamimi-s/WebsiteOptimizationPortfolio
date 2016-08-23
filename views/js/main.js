@@ -450,13 +450,13 @@ var resizePizzas = function(size) {
       }
     } else if (size == 2) {
       console.log("size is 2 is medium");
-      for (var i = 0; i < randomPizzas.length; i++) {
-        randomPizzas[i].style.width = '33%';
+      for (var j = 0; j < randomPizzas.length; j++) {
+        randomPizzas[j].style.width = '33%';
       }
     } else if (size == 3) {
       console.log("size is 3 is large");
-      for (var i = 0; i < randomPizzas.length; i++) {
-        randomPizzas[i].style.width = '50%';
+      for (var k = 0; k < randomPizzas.length; k++) {
+        randomPizzas[k].style.width = '50%';
       }
     } else {
       console.log("bug in changePizzaSizes");
