@@ -36,7 +36,7 @@ The goal is to render the page with a consistent frame-rate of 60fps when scroll
 
 ## How to Complete This Project (Project requirements from Udacity)
 
-To get started, check out the [repository]("https://github.com/jennikins813/frontend-nanodegree-mobile-portfolio") and inspect the code.
+To get started, check out the [repository](https://github.com/udacity/frontend-nanodegree-mobile-portfolio) and inspect the code.
 
 ### Getting started
 
@@ -44,7 +44,7 @@ To get started, check out the [repository]("https://github.com/jennikins813/fron
 
 Some useful tips to help you get started:
 
-1. Check out the [repository]("https://github.com/jennikins813/frontend-nanodegree-mobile-portfolio") 
+1. Check out the [repository](https://github.com/udacity/frontend-nanodegree-mobile-portfolio) 
 1. To inspect the site on your phone, you can run a local server
 
   ```bash
